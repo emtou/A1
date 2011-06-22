@@ -10,7 +10,7 @@ abstract class A1_Driver_Jelly extends A1 {
 	*/
 	protected function _load_user($username)
 	{
-		$query = Jelly::select($this->_config['user_model'])
+		$query = Jelly::query($this->_config['user_model'])
 			->where($this->_config['columns']['username'], '=', $username);
 
 		if (isset($this->_config['columns']['active']))
@@ -18,6 +18,6 @@ abstract class A1_Driver_Jelly extends A1 {
 			$query = $query->where($this->_config['columns']['active'], '=', TRUE);
 		}
 
-		return $query->limit(1)->execute();
+		return $query->limit(1)->select();
 	}
 }
